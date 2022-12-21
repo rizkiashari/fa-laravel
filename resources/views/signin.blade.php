@@ -15,12 +15,20 @@
 </head>
 <body>
   
+  @if(session()->has("success"))
+    <div x-data="{ open: true }" :class="{'flex': open, 'hidden': !open}" x-open="open" x-init="setTimeout(() => open = false, 1000)">
+      <div @click="open = !open" class="alert alert-success position-absolute" role="alert">
+        {{ session()->get("success") }}
+      </div>
+  </div>
+  @endif
+
   <div class="bg-auth">
     <div class="container">
       <div class="display-auth">
         <div style="border: 0.5px solid #fff; border-radius: 8px; padding:2rem 1rem;" class="w-50">
-          <h2 class="mb-4">Sign In</h2>
-          <form method="POST"  action="/signin">
+          <h2 class="mb-4">Login</h2>
+          <form method="POST"  action="/login">
             @csrf
             <div class="mb-3">
               <label for="email" class="form-label">Email address</label>
@@ -30,9 +38,9 @@
               <label for="password" class="form-label">Password</label>
               <input type="password" class="form-control" id="password" name="password">
             </div>
-            <button type="submit" class="btn-login w-100 mt-4">Sign In</button> 
+            <button type="submit" class="btn-login w-100 mt-4">Login</button> 
             <div class="mt-4 text-center">
-              <p>Belum Punya Akun? <a href="/signup" class="text-decoration-none">Daftar</a></p>
+              <p>Belum Punya Akun? <a href="/register" class="text-decoration-none">Daftar</a></p>
             </div>
           </form>
         </div>

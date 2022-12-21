@@ -15,11 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+
+// Home with middleware
+Route::get('/', [HomeController::class, 'index'])->middleware('auth');
 
 
 // guest group middleware
 Route::group(['middleware' => 'guest'], function () {
-  Route::get('/signin', [AuthController::class, 'loginGet']);
-  Route::get('/signup', [AuthController::class, 'registerGet']);
+  Route::get('/login', [AuthController::class, 'loginGet'])->name('login');
+  Route::get('/register', [AuthController::class, 'registerGet']);
+  Route::post("/register", [AuthController::class, 'registerStore']);
 });
