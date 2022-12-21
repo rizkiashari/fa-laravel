@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
+
+// guest group middleware
+Route::group(['middleware' => 'guest'], function () {
+  Route::get('/signin', [AuthController::class, 'loginGet']);
+  Route::get('/signup', [AuthController::class, 'registerGet']);
+});
