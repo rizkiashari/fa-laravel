@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">  
-  <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>  
 </head>
 <body>
   
@@ -20,6 +20,14 @@
       <div @click="open = !open" class="alert alert-success position-absolute" role="alert">
         {{ session()->get("success") }}
       </div>
+  </div>
+  @endif
+
+  @if ($errors->any())
+  <div x-data="{ open: true }" :class="{'flex': open, 'hidden': !open}" x-open="open" x-init="setTimeout(() => open = false, 1000)"  role="alert"> 
+    <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700 position-absolute">
+      <p class="text-warning">{{ $errors->first() }}</p>
+    </div>
   </div>
   @endif
 

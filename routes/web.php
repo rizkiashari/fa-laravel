@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 
 // Home with middleware
-Route::get('/', [HomeController::class, 'index'])->middleware('auth');
+Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
 
 // guest group middleware
 Route::group(['middleware' => 'guest'], function () {
   Route::get('/login', [AuthController::class, 'loginGet'])->name('login');
+  Route::post("/login", [AuthController::class, 'loginStore']);
   Route::get('/register', [AuthController::class, 'registerGet']);
   Route::post("/register", [AuthController::class, 'registerStore']);
 });

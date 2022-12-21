@@ -21,7 +21,7 @@
       <p class="text-warning">{{ $errors->first() }}</p>
     </div>
   </div>
-@endif
+  @endif
   
   <div class="bg-auth">
     <div class="container">
