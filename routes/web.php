@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\TransaksiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,23 @@ use Illuminate\Support\Facades\Route;
 
 
 // Home with middleware
-Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
-Route::post('/logout', [AuthController::class, 'logout'])->name(
-  'logout'
-);
+
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('/', [HomeController::class, 'index'])->name('home');
+
+  Route::post('/logout', [AuthController::class, 'logout'])->name(
+    'logout'
+  );
+
+  Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
+
+  Route::post('/produk/create', [ProdukController::class, 'create']);
+
+  Route::get("/keranjang", [TransaksiController::class, 'index'])->name(
+    "keranjang"
+  );
+});
 
 // guest group middleware
 Route::group(['middleware' => 'guest'], function () {

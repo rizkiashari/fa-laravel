@@ -11,10 +11,12 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/produk">Produk</a>
-        </li>
-          <li class="nav-item">
+        </li> 
+        @if (auth()->user()->role == 'admin')
+        <li class="nav-item">
           <a class="nav-link" href="/keranjang">Keranjang</a>
         </li> 
+        @endif
       </ul> 
       <form action="/logout" method="POST">
         @csrf
