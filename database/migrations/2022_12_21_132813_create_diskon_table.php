@@ -13,7 +13,7 @@ class CreateDiskonTable extends Migration
      */
     public function up()
     {
-        Schema::create('diskon', function (Blueprint $table) {
+        Schema::create('diskons', function (Blueprint $table) {
             $table->id();
             $table->string('kode');
             $table->string('nama');
@@ -28,6 +28,6 @@ class CreateDiskonTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diskon');
+        Schema::dropIfExists('diskons');
     }
 }
