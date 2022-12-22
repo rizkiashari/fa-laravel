@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 // Home with middleware
 Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
+Route::post('/logout', [AuthController::class, 'logout'])->name(
+  'logout'
+);
 
 // guest group middleware
 Route::group(['middleware' => 'guest'], function () {

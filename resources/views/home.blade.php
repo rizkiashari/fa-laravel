@@ -1,5 +1,5 @@
 @extends('layout.main')
 
 @section('content')
-    <h1>Home Page</h1>
+    @include('partials.navbar')
 @endsection
