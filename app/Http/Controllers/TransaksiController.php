@@ -43,7 +43,7 @@ class TransaksiController extends Controller
                         'deskripsi' => $produk->deskripsi,
                         'url_image' => $produk->url_image,
                         'kode_barang' => $produk->kode_barang,
-                        'qty' => $request->qty
+                        'qty' => 1
                     ]
                 ];
             }
