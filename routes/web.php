@@ -35,6 +35,8 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get("/keranjang", [TransaksiController::class, 'index'])->name(
     "keranjang"
   );
+
+  Route::post("/keranjang/add", [TransaksiController::class, 'addToCart']);
 });
 
 // guest group middleware
