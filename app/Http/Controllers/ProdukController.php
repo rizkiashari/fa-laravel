@@ -9,8 +9,10 @@ class ProdukController extends Controller
 {
     public function index()
     {
+        $produk = Produk::orderBy("id", "desc")->get();
         return view('produk', [
             'title' => 'Produk',
+            'produk' => $produk,
         ]);
     }
 
